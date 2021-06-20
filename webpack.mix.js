@@ -11,8 +11,7 @@ const mix = require('laravel-mix');
  |
  */
 
-mix.js('resources/js/app.js', 'public/js').postCss('resources/css/app.css', 'public/css', [
-    require('postcss-import'),
-    require('tailwindcss'),
-    require('autoprefixer'),
-]);
+mix.js('resources/js/app.js', 'public/js');
+
+mix.copyDirectory('node_modules/admin-lte/dist/', 'public/adminlte/dist/')
+mix.copyDirectory('node_modules/admin-lte/plugins/', 'public/adminlte/plugins/')

@@ -13,6 +13,10 @@ use Illuminate\Support\Facades\Route;
 |
 */
 
+Route::get('/test', function () {
+    return view('blank');
+})->middleware(['auth']);
+
 Route::get('/', function () {
     return view('welcome');
 });
@@ -22,3 +26,10 @@ Route::get('/dashboard', function () {
 })->middleware(['auth'])->name('dashboard');
 
 require __DIR__.'/auth.php';
+
+Route::middleware(['auth'])->group(function () {
+    Route::get('sms', \App\Http\Controllers\SmsController::class)->name('sms');
+    Route::resource('agent', \App\Http\Controllers\AgentController::class);
+    Route::resource('groupe', \App\Http\Controllers\GroupeController::class);
+    Route::resource('utilisateur', \App\Http\Controllers\UserController::class);
+});
