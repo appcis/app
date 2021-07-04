@@ -27,7 +27,8 @@ Route::middleware(['auth'])->group(function () {
     Route::get('sms', \App\Http\Controllers\SmsController::class)->name('sms');
     Route::resource('agent', \App\Http\Controllers\AgentController::class);
     Route::resource('groupe', \App\Http\Controllers\GroupeController::class);
-    Route::resource('utilisateur', \App\Http\Controllers\UserController::class);
+    Route::resource('utilisateur', \App\Http\Controllers\UserController::class)
+        ->parameters(['utilisateur' => 'user']);
 });
 
 Route::prefix('theme')->name('theme.')->middleware(['auth'])->group(function () {

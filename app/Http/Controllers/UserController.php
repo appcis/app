@@ -4,6 +4,9 @@ namespace App\Http\Controllers;
 
 use App\Models\User;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Hash;
+use Illuminate\Testing\Fluent\Concerns\Has;
+use Illuminate\Validation\Rule;
 
 class UserController extends Controller
 {
@@ -26,7 +29,7 @@ class UserController extends Controller
      */
     public function create()
     {
-        //
+        return view('pages.utilisateur.create');
     }
 
     /**
@@ -37,7 +40,16 @@ class UserController extends Controller
      */
     public function store(Request $request)
     {
-        //
+        $data = $request->validate([
+            'name' => 'required',
+            'email' => 'required|unique:users',
+            'password' => 'required'
+        ]);
+        $data['password'] = Hash::make($data['password']);
+
+        User::create($data);
+
+        return redirect()->route('utilisateur.index');
     }
 
     /**
@@ -59,7 +71,7 @@ class UserController extends Controller
      */
     public function edit(User $user)
     {
-        //
+        return view('pages.utilisateur.edit', compact('user'));
     }
 
     /**
@@ -71,7 +83,18 @@ class UserController extends Controller
      */
     public function update(Request $request, User $user)
     {
-        //
+        $data = $request->validate([
+            'name' => 'required',
+            Rule::unique('email')->ignore($user->id),
+        ]);
+        if ($request->has('password') && $request->password) {
+            $data['password'] = Hash::make($request->password);
+        }
+
+        $user->update($data);
+
+        return redirect()->route('utilisateur.index');
+
     }
 
     /**
@@ -82,6 +105,8 @@ class UserController extends Controller
      */
     public function destroy(User $user)
     {
-        //
+        $user->delete();
+
+        return redirect()->route('utilisateur.index');
     }
 }
