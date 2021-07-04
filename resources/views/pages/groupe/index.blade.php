@@ -5,7 +5,7 @@
         <x-card.header>
             Liste des groupes
             <x-slot name="action">
-                <a href="{{ route('groupe.create') }}" class="border shadow px-6 py-2 block rounded hover:bg-gray-100">Nouveau groupe</a>
+                <x-card.create-btn :href="route('groupe.create')">Nouveau groupe</x-card.create-btn>
             </x-slot>
         </x-card.header>
 
