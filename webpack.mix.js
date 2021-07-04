@@ -11,7 +11,11 @@ const mix = require('laravel-mix');
  |
  */
 
-mix.js('resources/js/app.js', 'public/js');
-
-mix.copyDirectory('node_modules/admin-lte/dist/', 'public/adminlte/dist/')
-mix.copyDirectory('node_modules/admin-lte/plugins/', 'public/adminlte/plugins/')
+mix.js('resources/js/app.js', 'public/js')
+    .copyDirectory('node_modules/@fortawesome/fontawesome-free/webfonts', 'public/webfonts')
+    .copy('node_modules/@fortawesome/fontawesome-free/css/all.min.css', 'public/css/fontawesome.css')
+    .postCss('resources/css/app.css', 'public/css', [
+        require('postcss-import'),
+        require('tailwindcss'),
+        require('autoprefixer'),
+    ]);

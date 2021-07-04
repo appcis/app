@@ -14,7 +14,9 @@ class UserController extends Controller
      */
     public function index()
     {
-        return view('pages.utilisateur.index');
+        return view('pages.utilisateur.index', [
+            'users' => User::all()->sortBy('name')
+        ]);
     }
 
     /**

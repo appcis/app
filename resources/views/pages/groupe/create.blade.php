@@ -1,50 +1,36 @@
 <x-app-layout>
-    <!-- Content Header (Page header) -->
-    <div class="content-header">
-        <div class="container-fluid">
-            <div class="row mb-2">
-                <div class="col-sm-6">
-                    <h1 class="m-0">Groupes</h1>
-                </div><!-- /.col -->
-                <div class="col-sm-6">
-                    <ol class="breadcrumb float-sm-right">
-                        <li class="breadcrumb-item"><a href="#">Home</a></li>
-                        <li class="breadcrumb-item active">Starter Page</li>
-                    </ol>
-                </div><!-- /.col -->
-            </div><!-- /.row -->
-        </div><!-- /.container-fluid -->
-    </div>
-    <!-- /.content-header -->
+    <x-header>Gestion des groupes</x-header>
 
-    <!-- Main content -->
-    <div class="content">
-        <div class="container-fluid">
-            <div class="row">
-                <div class="col-12">
-                    <div class="card card-primary card-outline">
-                        <div class="card-header">
-                            <h5 class="m-0">Creer un groupe</h5>
-                        </div>
-                        <div class="card-body">
-                            <div class="form-group">
-                                <label for="nom">Nom</label>
-                                <input id="nom" type="text" class="form-control">
-                            </div>
-                            <div class="form-group">
-                                <label for="description">Description</label>
-                                <textarea id="description" class="form-control"></textarea>
-                            </div>
-                        </div>
-                        <div class="card-footer clearfix">
+    <x-card.card>
+        <x-card.header>
+            Nouveau groupe
+        </x-card.header>
 
-                        </div>
-                    </div>
-                </div>
-                <!-- /.col-md-6 -->
+        <form action="{{ route('groupe.store') }}" method="POST">
+            @csrf
+
+            <div class="px-4 py-2">
+
+                <label class="block mb-2">
+                    <span class="text-gray-700">Nom</span>
+                    <input type="text" class="mt-1 block w-full border-gray-300 rounded-md" name="name">
+                </label>
+
+                <label class="block">
+                    <span class="text-gray-700">Description</span>
+                    <textarea class="mt-1 block w-full border-gray-300 rounded-md" rows="3" name="description"></textarea>
+                </label>
             </div>
-            <!-- /.row -->
-        </div><!-- /.container-fluid -->
-    </div>
-    <!-- /.content -->
+
+            <div class="px-4 py-2 flex justify-end items-center">
+                <x-form.cancel-btn :href="route('groupe.index')"></x-form.cancel-btn>
+                <x-form.submit-btn></x-form.submit-btn>
+            </div>
+
+        </form>
+
+
+    </x-card.card>
+
+
 </x-app-layout>

@@ -14,7 +14,9 @@ class GroupeController extends Controller
      */
     public function index()
     {
-        return view('pages.groupe.index');
+        return view('pages.groupe.index', [
+            'groupes' => Groupe::all()->sortBy('nom')
+        ]);
     }
 
     /**
@@ -35,7 +37,14 @@ class GroupeController extends Controller
      */
     public function store(Request $request)
     {
-        //
+        $data = $request->validate([
+            'name' => 'required|unique:groupes',
+            'description' => 'nullable'
+        ]);
+
+        Groupe::create($data);
+
+        return redirect()->route('groupe.index');
     }
 
     /**
@@ -57,7 +66,7 @@ class GroupeController extends Controller
      */
     public function edit(Groupe $groupe)
     {
-        //
+        return view('pages.groupe.edit', compact('groupe'));
     }
 
     /**

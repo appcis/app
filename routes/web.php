@@ -13,10 +13,6 @@ use Illuminate\Support\Facades\Route;
 |
 */
 
-Route::get('/test', function () {
-    return view('blank');
-})->middleware(['auth']);
-
 Route::get('/', function () {
     return view('welcome');
 });
@@ -32,4 +28,8 @@ Route::middleware(['auth'])->group(function () {
     Route::resource('agent', \App\Http\Controllers\AgentController::class);
     Route::resource('groupe', \App\Http\Controllers\GroupeController::class);
     Route::resource('utilisateur', \App\Http\Controllers\UserController::class);
+});
+
+Route::prefix('theme')->name('theme.')->middleware(['auth'])->group(function () {
+    Route::view('dashboard', 'pages.theme.dashboard')->name('dashboard');
 });
