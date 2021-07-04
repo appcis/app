@@ -34,7 +34,7 @@
                     class="shadow border border-red-600 bg-red-600 px-6 py-2 block rounded-md hover:bg-red-700 text-gray-50 mr-auto">
                     Supprimer
                 </button>
-                <x-form.cancel-btn ::href="route('utilisateur.index')"></x-form.cancel-btn>
+                <x-form.cancel-btn :href="route('utilisateur.index')"></x-form.cancel-btn>
                 <x-form.submit-btn></x-form.submit-btn>
             </div>
 
@@ -48,7 +48,7 @@
                 @csrf
                 @method('DELETE')
                 <div class="flex items-center justify-center space-x-2">
-                    <button type="button"
+                    <button type="button" @click="open = false"
                         class="shadow border border-green-600 bg-green-600 px-6 py-2 block rounded-md hover:bg-green-700 text-gray-50">
                         Annuler
                     </button>

@@ -17,10 +17,10 @@
     <!-- Scripts -->
     <script src="{{ asset('js/app.js') }}" defer></script>
 </head>
-<body class="font-sans antialiased">
+<body class="font-sans antialiased" x-data="{ open: false }">
 <div class="min-h-screen bg-gray-50 flex">
 
-    <nav class="w-72 min-h-screen bg-gray-700 text-gray-100">
+    <nav class="min-h-screen bg-gray-700 text-gray-100 md:static md:w-72" :class="open ? 'absolute w-4/6' : 'w-0 h-0'">
         <div class="flex items-center px-3 py-3 border-b border-gray-100">
             <img class="h-12 pr-8" src="{{ asset('img/logo.png') }}" alt="logo aups">
             <span class="text-2xl">CIS Aups</span>
@@ -36,10 +36,14 @@
         </ul>
     </nav>
 
-
     <!-- Page Content -->
-    <main class="w-full p-2">
-        {{ $slot }}
+    <main class="w-full">
+        <div class="bg-gray-100 md:hidden">
+            <i class="fas fa-bars p-6" @click="open = true"></i>
+        </div>
+        <div class="p-2 w-full">
+            {{ $slot }}
+        </div>
     </main>
 </div>
 </body>

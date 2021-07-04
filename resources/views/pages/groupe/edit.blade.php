@@ -6,7 +6,7 @@
             Edition groupe
         </x-card.header>
 
-        <form action="{{ route('groupe.edit', $groupe) }}" method="POST">
+        <form action="{{ route('groupe.update', $groupe) }}" method="POST">
             @csrf
             @method('PUT')
 

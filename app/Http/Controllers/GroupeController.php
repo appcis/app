@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use App\Models\Groupe;
 use Illuminate\Http\Request;
+use Illuminate\Validation\Rule;
 
 class GroupeController extends Controller
 {
@@ -78,7 +79,17 @@ class GroupeController extends Controller
      */
     public function update(Request $request, Groupe $groupe)
     {
-        //
+        $data = $request->validate([
+            'name' => [
+                'required',
+                Rule::unique('groupes')->ignore($groupe->id)
+            ],
+            'description' => 'nullable'
+        ]);
+
+        $groupe->update($data);
+
+        return redirect()->route('groupe.index');
     }
 
     /**
