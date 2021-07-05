@@ -3,6 +3,7 @@
 namespace App\Http\Controllers;
 
 use App\Models\Agent;
+use App\Models\Groupe;
 use Illuminate\Http\Request;
 
 class AgentController extends Controller
@@ -60,7 +61,8 @@ class AgentController extends Controller
      */
     public function edit(Agent $agent)
     {
-        return view('pages.agent.edit', compact('agent'));
+        $groupes = Groupe::all()->sortBy('name');
+        return view('pages.agent.edit', compact('agent', 'groupes'));
     }
 
     /**
@@ -73,6 +75,7 @@ class AgentController extends Controller
     public function update(Request $request, Agent $agent)
     {
         $agent->update($request->all());
+        $agent->groupes()->sync($request->groupes);
         return redirect()->route('agent.index')->with('success', 'L\'agent a été mis a jour');
     }
 

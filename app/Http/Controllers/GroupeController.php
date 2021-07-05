@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers;
 
+use App\Models\Agent;
 use App\Models\Groupe;
 use Illuminate\Http\Request;
 use Illuminate\Validation\Rule;
@@ -67,7 +68,8 @@ class GroupeController extends Controller
      */
     public function edit(Groupe $groupe)
     {
-        return view('pages.groupe.edit', compact('groupe'));
+        $agents = Agent::all()->sortBy('nom');
+        return view('pages.groupe.edit', compact('groupe', 'agents'));
     }
 
     /**
@@ -88,6 +90,7 @@ class GroupeController extends Controller
         ]);
 
         $groupe->update($data);
+        $groupe->agents()->sync($request->agents);
 
         return redirect()->route('groupe.index');
     }
