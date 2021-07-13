@@ -26,7 +26,10 @@
             <span class="text-2xl">CIS Aups</span>
         </div>
         <div class="border-b border-gray-100 py-4 px-3">
-            {{ Auth::user()->name }} <i class="fas fa-sign-out-alt"></i>
+            <form action="{{ route('logout') }}" method="POST">
+                @csrf
+                {{ Auth::user()->name }} <button type="submit"><i class="fas fa-sign-out-alt"></i></button>
+            </form>
         </div>
         <ul class="px-2 py-2 space-y-1">
             <li><a href="{{ route('sms') }}" class="block hover:bg-gray-600 py-2 px-4 rounded"><i class="fas fa-sms mr-4"></i> SMS</a></li>
