@@ -24,7 +24,7 @@ Route::get('/dashboard', function () {
 require __DIR__.'/auth.php';
 
 Route::middleware(['auth'])->group(function () {
-    Route::get('sms', \App\Http\Controllers\SmsController::class)->name('sms');
+    Route::any('sms', \App\Http\Controllers\SmsController::class)->name('sms');
     Route::resource('agent', \App\Http\Controllers\AgentController::class);
     Route::resource('groupe', \App\Http\Controllers\GroupeController::class);
     Route::resource('utilisateur', \App\Http\Controllers\UserController::class)

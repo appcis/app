@@ -22,7 +22,7 @@
                     <textarea class="mt-1 block w-full border-gray-300 rounded-md" rows="3" name="description">{{ $groupe->description }}</textarea>
                 </label>
 
-                <label class="block mb-2">
+                <div class="block mb-2">
                     <span class="text-gray-700">Agents</span>
                     @isset($agents)
                         <div class="grid grid-cols-2 md:grid-cols-3 xl:grid-cols-4 gap-1 mt-2">
@@ -37,7 +37,7 @@
                             @endforeach
                         </div>
                     @endempty
-                </label>
+                </div>
             </div>
 
             <div class="px-4 py-2 flex justify-end items-center space-x-2">
