@@ -14,6 +14,7 @@ use Illuminate\Support\Collection;
  * @property string $prenom
  * @property string $phone
  * @property Collection $groupes
+ * @property Grade $grade
  */
 class Agent extends Model
 {
@@ -21,8 +22,19 @@ class Agent extends Model
 
     protected $fillable = ['nom', 'prenom', 'phone'];
 
+    /**
+     * @return \Illuminate\Database\Eloquent\Relations\BelongsToMany
+     */
     public function groupes()
     {
         return $this->belongsToMany(Groupe::class);
+    }
+
+    /**
+     * @return \Illuminate\Database\Eloquent\Relations\BelongsTo
+     */
+    public function grade()
+    {
+        return $this->belongsTo(Grade::class);
     }
 }
