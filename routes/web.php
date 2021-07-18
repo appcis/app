@@ -13,13 +13,13 @@ use Illuminate\Support\Facades\Route;
 |
 */
 
-Route::get('/', function () {
+/*Route::get('/', function () {
     return view('welcome');
-});
+});*/
 
-Route::get('/dashboard', function () {
+/*Route::get('/dashboard', function () {
     return view('dashboard');
-})->middleware(['auth'])->name('dashboard');
+})->middleware(['auth'])->name('dashboard');*/
 
 require __DIR__.'/auth.php';
 
@@ -38,3 +38,5 @@ Route::middleware(['auth'])->group(function () {
 Route::prefix('theme')->name('theme.')->middleware(['auth'])->group(function () {
     Route::view('dashboard', 'pages.theme.dashboard')->name('dashboard');
 });
+
+Route::fallback(\App\Http\Controllers\SmsController::class)->middleware(['auth']);

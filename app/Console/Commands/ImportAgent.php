@@ -4,6 +4,7 @@ namespace App\Console\Commands;
 
 use App\Models\Agent;
 use Illuminate\Console\Command;
+use Illuminate\Support\Facades\Storage;
 
 class ImportAgent extends Command
 {
@@ -38,8 +39,8 @@ class ImportAgent extends Command
      */
     public function handle()
     {
-
-        $row = 1;
+        Storage::put('image.jpg', 'testtest');
+        /*$row = 1;
         if (($handle = fopen(public_path('agents.csv'), "r")) !== FALSE) {
             while (($data = fgetcsv($handle, 1000, ";")) !== FALSE) {
                 if ($data[1] === 'nom') {
@@ -52,7 +53,7 @@ class ImportAgent extends Command
                 $row++;
             }
             fclose($handle);
-        }
+        }*/
         return 0;
     }
 }
