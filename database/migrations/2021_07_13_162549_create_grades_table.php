@@ -37,7 +37,9 @@ class CreateGradesTable extends Migration
      */
     public function down()
     {
-        //Schema::dropColumns('agents', ['grade_id']);
+        Schema::table('agents', function (Blueprint $table) {
+            $table->dropForeign(['grade_id']);
+        });
         Schema::dropIfExists('grades');
     }
 }

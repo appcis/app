@@ -37,4 +37,9 @@ class Agent extends Model
     {
         return $this->belongsTo(Grade::class);
     }
+
+    public function sms()
+    {
+        return $this->belongsToMany(Sms::class);
+    }
 }

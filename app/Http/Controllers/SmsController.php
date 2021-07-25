@@ -2,8 +2,10 @@
 
 namespace App\Http\Controllers;
 
+use App\Jobs\SendSms;
 use App\Models\Agent;
 use App\Models\Groupe;
+use App\Models\Sms;
 use Illuminate\Http\Request;
 
 class SmsController extends Controller
@@ -17,7 +19,13 @@ class SmsController extends Controller
     public function __invoke(Request $request)
     {
         if ($request->method() === 'POST') {
-            dd($request->all());
+            /** @var Sms $sms */
+            $sms = Sms::create([
+                'message' => $request->message
+            ]);
+            $sms->agents()->attach($request->agents);
+
+            SendSms::dispatch($sms);
         }
 
         return view('pages.sms.index', [
