@@ -41,7 +41,7 @@ class ImportAgent extends Command
     {
         Storage::disk('local')->writeStream('agents.csv', Storage::disk('sftp')->readStream('data/agents.csv'));
         $row = 1;
-        if (($handle = fopen(public_path('agents.csv'), "r")) !== FALSE) {
+        if (($handle = fopen(storage_path('app/agents.csv'), "r")) !== FALSE) {
             while (($data = fgetcsv($handle, 1000, ";")) !== FALSE) {
                 if ($data[1] === 'nom') {
                     continue;

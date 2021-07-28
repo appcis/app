@@ -41,7 +41,7 @@ class ImportGroupe extends Command
     {
         Storage::disk('local')->writeStream('groupes.csv', Storage::disk('sftp')->readStream('data/groupes.csv'));
         $row = 1;
-        if (($handle = fopen(public_path('groupes.csv'), "r")) !== FALSE) {
+        if (($handle = fopen(storage_path('app/groupes.csv'), "r")) !== FALSE) {
             while (($data = fgetcsv($handle, 1000, ";")) !== FALSE) {
                 if ($data[1] === 'name') {
                     continue;
