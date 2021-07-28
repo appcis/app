@@ -4,6 +4,7 @@ namespace App\Console\Commands;
 
 use App\Models\User;
 use Illuminate\Console\Command;
+use Storage;
 
 class ImportUser extends Command
 {
@@ -38,8 +39,9 @@ class ImportUser extends Command
      */
     public function handle()
     {
+        Storage::disk('local')->writeStream('users.csv', Storage::disk('sftp')->readStream('data/users.csv'));
         $row = 1;
-        if (($handle = fopen(public_path('users.csv'), "r")) !== FALSE) {
+        if (($handle = fopen(storage_path('app/users.csv'), "r")) !== FALSE) {
             while (($data = fgetcsv($handle, 1000, ";")) !== FALSE) {
                 if ($data[1] === 'name') {
                     continue;
@@ -52,6 +54,7 @@ class ImportUser extends Command
             }
             fclose($handle);
         }
+        Storage::disk('local')->delete('users.csv');
         return 0;
     }
 }

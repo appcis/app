@@ -39,8 +39,8 @@ class ImportAgent extends Command
      */
     public function handle()
     {
-        Storage::put('image.jpg', 'testtest');
-        /*$row = 1;
+        Storage::disk('local')->writeStream('agents.csv', Storage::disk('sftp')->readStream('data/agents.csv'));
+        $row = 1;
         if (($handle = fopen(public_path('agents.csv'), "r")) !== FALSE) {
             while (($data = fgetcsv($handle, 1000, ";")) !== FALSE) {
                 if ($data[1] === 'nom') {
@@ -53,7 +53,8 @@ class ImportAgent extends Command
                 $row++;
             }
             fclose($handle);
-        }*/
+        }
+        Storage::disk('local')->delete('agents.csv');
         return 0;
     }
 }

@@ -11,7 +11,7 @@
 
                 <label class="block mb-2">
                     <span class="text-gray-700">Message</span>
-                    <textarea class="mt-1 block w-full border-gray-300 rounded-md" rows="3" name="message"></textarea>
+                    <textarea class="mt-1 block w-full border-gray-300 rounded-md" rows="3" name="message" maxlength="160"></textarea>
                 </label>
 
                 <div class="mb-2">

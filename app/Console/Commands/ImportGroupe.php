@@ -4,6 +4,7 @@ namespace App\Console\Commands;
 
 use App\Models\Groupe;
 use Illuminate\Console\Command;
+use Illuminate\Support\Facades\Storage;
 
 class ImportGroupe extends Command
 {
@@ -38,6 +39,7 @@ class ImportGroupe extends Command
      */
     public function handle()
     {
+        Storage::disk('local')->writeStream('groupes.csv', Storage::disk('sftp')->readStream('data/groupes.csv'));
         $row = 1;
         if (($handle = fopen(public_path('groupes.csv'), "r")) !== FALSE) {
             while (($data = fgetcsv($handle, 1000, ";")) !== FALSE) {
@@ -52,6 +54,7 @@ class ImportGroupe extends Command
             }
             fclose($handle);
         }
+        Storage::disk('local')->delete('groupes.csv');
         return 0;
     }
 }
