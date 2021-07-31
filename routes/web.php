@@ -13,14 +13,6 @@ use Illuminate\Support\Facades\Route;
 |
 */
 
-/*Route::get('/', function () {
-    return view('welcome');
-});*/
-
-/*Route::get('/dashboard', function () {
-    return view('dashboard');
-})->middleware(['auth'])->name('dashboard');*/
-
 require __DIR__.'/auth.php';
 
 Route::middleware(['auth'])->group(function () {
@@ -33,18 +25,19 @@ Route::middleware(['auth'])->group(function () {
         ->name('sms.show')
         ->middleware('can:show-sms,sms');
 
-    Route::resource('agent', \App\Http\Controllers\AgentController::class);
-    Route::resource('groupe', \App\Http\Controllers\GroupeController::class);
-    Route::resource('utilisateur', \App\Http\Controllers\UserController::class)
-        ->parameters(['utilisateur' => 'user']);
+    Route::middleware('can:admin')->group(function () {
+        Route::resource('agent', \App\Http\Controllers\AgentController::class);
+        Route::resource('groupe', \App\Http\Controllers\GroupeController::class);
+        Route::resource('utilisateur', \App\Http\Controllers\UserController::class)
+            ->parameters(['utilisateur' => 'user']);
 
-    Route::prefix('parametre')->name('parametre.')->group(function () {
-        Route::resource('grade', \App\Http\Controllers\Parametre\GradeController::class);
+        Route::prefix('parametre')->name('parametre.')->group(function () {
+            Route::resource('grade', \App\Http\Controllers\Parametre\GradeController::class);
+        });
+        Route::prefix('theme')->name('theme.')->middleware(['auth'])->group(function () {
+            Route::view('dashboard', 'pages.theme.dashboard')->name('dashboard');
+        });
     });
-});
-
-Route::prefix('theme')->name('theme.')->middleware(['auth'])->group(function () {
-    Route::view('dashboard', 'pages.theme.dashboard')->name('dashboard');
 });
 
 Route::fallback([\App\Http\Controllers\SmsController::class, 'send'])->middleware(['auth']);
