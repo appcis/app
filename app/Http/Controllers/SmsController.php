@@ -21,11 +21,14 @@ class SmsController extends Controller
     {
         if ($request->method() === 'POST') {
             /** @var Sms $sms */
-            $sms = Sms::create([
+            $sms = new Sms([
                 'message' => $request->message
             ]);
+            $sms->user()->associate(\Auth::user());
+            $sms->etat_envoi = 'ATTENTE';
+            $sms->save();
+
             $sms->agents()->attach($request->agents);
-            $sms->update(['etat_envoi' => 'ATTENTE']);
 
             SendSms::dispatch($sms);
 
