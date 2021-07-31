@@ -32,7 +32,7 @@
             </form>
         </div>
         <ul class="px-2 py-2 space-y-1">
-            <li><a href="{{ route('sms') }}" class="block hover:bg-gray-600 py-2 px-4 rounded"><i class="fas fa-sms mr-4"></i> SMS</a></li>
+            <li><a href="{{ route('sms.send') }}" class="block hover:bg-gray-600 py-2 px-4 rounded"><i class="fas fa-sms mr-4"></i> SMS</a></li>
             <li><a href="{{ route('agent.index') }}" class="block hover:bg-gray-600 py-2 px-4 rounded"><i class="fas fa-user mr-4"></i> Agent</a></li>
             <li><a href="{{ route('groupe.index') }}" class="block hover:bg-gray-600 py-2 px-4 rounded"><i class="fas fa-users mr-4"></i> Groupe</a></li>
             <li><a href="{{ route('utilisateur.index') }}" class="block hover:bg-gray-600 py-2 px-4 rounded"><i class="fas fa-user-cog mr-4"></i> Utilisateur</a></li>

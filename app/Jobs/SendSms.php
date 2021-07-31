@@ -37,9 +37,12 @@ class SendSms implements ShouldQueue
      */
     public function handle()
     {
+        $this->sms->update(['etat_envoi' => 'EN_COURS']);
         $this->sms->agents->each(function (Agent $agent) {
             Http::get('http://'. env('SMS_IP') .'/RaspiSMS/smsAPI?email=admin@example.fr&password=' . env('SMS_PASSWORD')
                 . '&numbers='. $agent->phone . '&text='. urlencode($this->sms->message));
+            sleep(5);
         });
+        $this->sms->update(['etat_envoi' => 'ENVOYE']);
     }
 }

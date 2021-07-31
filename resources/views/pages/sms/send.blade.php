@@ -4,7 +4,7 @@
     <x-card.card>
         <x-card.header>Envoyer un SMS</x-card.header>
 
-        <form action="{{ route('sms') }}" method="POST">
+        <form action="{{ route('sms.send') }}" method="POST">
             @csrf
 
             <div class="px-4 py-2">

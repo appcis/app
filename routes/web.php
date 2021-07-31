@@ -24,7 +24,10 @@ use Illuminate\Support\Facades\Route;
 require __DIR__.'/auth.php';
 
 Route::middleware(['auth'])->group(function () {
-    Route::any('sms', \App\Http\Controllers\SmsController::class)->name('sms');
+
+    Route::any('/sms', [\App\Http\Controllers\SmsController::class, 'send'])->name('sms.send');
+    Route::get('/sms/historique', [\App\Http\Controllers\SmsController::class, 'historique'])->name('sms.historique');
+
     Route::resource('agent', \App\Http\Controllers\AgentController::class);
     Route::resource('groupe', \App\Http\Controllers\GroupeController::class);
     Route::resource('utilisateur', \App\Http\Controllers\UserController::class)
@@ -39,4 +42,4 @@ Route::prefix('theme')->name('theme.')->middleware(['auth'])->group(function () 
     Route::view('dashboard', 'pages.theme.dashboard')->name('dashboard');
 });
 
-Route::fallback(\App\Http\Controllers\SmsController::class)->middleware(['auth']);
+Route::fallback([\App\Http\Controllers\SmsController::class, 'send'])->middleware(['auth']);

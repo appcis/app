@@ -41,4 +41,9 @@ class User extends Authenticatable
         'email_verified_at' => 'datetime',
         'roles' => 'array'
     ];
+
+    public function sms()
+    {
+        return $this->hasMany(Sms::class);
+    }
 }
