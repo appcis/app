@@ -47,6 +47,11 @@ class SmsController extends Controller
         ]);
     }
 
+    public function show(Sms $sms)
+    {
+        return view('pages.sms.show', compact('sms'));
+    }
+
     public function historique()
     {
         $messages = \Auth::user()->sms()->orderByDesc('created_at')->get();

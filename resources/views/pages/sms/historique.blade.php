@@ -4,7 +4,7 @@
 
     <div class="px-4 flex flex-col space-y-4">
         @forelse($messages as $sms)
-        <div class="bg-white border rounded shadow">
+        <div class="bg-white border rounded shadow" @click="window.location.href = '{{ route('sms.show', $sms) }}'">
             <div class="flex px-2 py-1">
                 <div class="mr-auto text-sm">
                     {{ $sms->message }}
