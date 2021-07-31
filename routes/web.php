@@ -25,9 +25,13 @@ require __DIR__.'/auth.php';
 
 Route::middleware(['auth'])->group(function () {
 
-    Route::any('/sms', [\App\Http\Controllers\SmsController::class, 'send'])->name('sms.send');
-    Route::get('/sms/historique', [\App\Http\Controllers\SmsController::class, 'historique'])->name('sms.historique');
-    Route::get('/sms/{sms}', [\App\Http\Controllers\SmsController::class, 'show'])->name('sms.show');
+    Route::any('/sms', [\App\Http\Controllers\SmsController::class, 'send'])
+        ->name('sms.send');
+    Route::get('/sms/historique', [\App\Http\Controllers\SmsController::class, 'historique'])
+        ->name('sms.historique');
+    Route::get('/sms/{sms}', [\App\Http\Controllers\SmsController::class, 'show'])
+        ->name('sms.show')
+        ->middleware('can:show-sms,sms');
 
     Route::resource('agent', \App\Http\Controllers\AgentController::class);
     Route::resource('groupe', \App\Http\Controllers\GroupeController::class);

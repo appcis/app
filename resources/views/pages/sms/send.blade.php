@@ -1,5 +1,8 @@
 <x-app-layout>
-    <x-header>SMS</x-header>
+    <x-header>SMS
+        <a href="{{ route('sms.historique') }}"
+           class="float-right text-base border bg-white rounded-md px-4 py-2 shadow border-primary-600 text-primary-600">Historique</a>
+    </x-header>
 
     <x-card.card>
         <x-card.header>Envoyer un SMS</x-card.header>
