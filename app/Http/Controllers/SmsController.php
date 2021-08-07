@@ -15,7 +15,7 @@ class SmsController extends Controller
      * Handle the incoming request.
      *
      * @param \Illuminate\Http\Request $request
-     * @return \Illuminate\Contracts\Foundation\Application|\Illuminate\Contracts\View\Factory|\Illuminate\Contracts\View\View|\Illuminate\Http\Response
+     * @return \Illuminate\Contracts\Foundation\Application|\Illuminate\Contracts\View\Factory|\Illuminate\Contracts\View\View|\Illuminate\Http\RedirectResponse|\Illuminate\Http\Response
      */
     public function send(Request $request)
     {
@@ -30,7 +30,10 @@ class SmsController extends Controller
 
             $sms->agents()->attach($request->agents);
 
-            SendSms::dispatch($sms);
+            /** On envoi les SMS que si on est pas en mode debug */
+            if (!config('app.debug')) {
+                SendSms::dispatch($sms);
+            }
 
             return redirect()->route('sms.show', $sms);
         }

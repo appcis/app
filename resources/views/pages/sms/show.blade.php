@@ -1,5 +1,18 @@
 <x-app-layout>
-    <x-header>SMS</x-header>
+    <x-header>
+        <div class="flex items-center">
+            <span>SMS</span>
+            <div class="flex flex-col ml-10 items-center">
+                <span @class([
+                'rounded-full px-3 py-0.5 text-xs font-bold text-white',
+                'bg-green-600' => $sms->etat_envoi === 'ENVOYE',
+                'bg-blue-600' => $sms->etat_envoi === 'EN_COURS',
+                'bg-yellow-600' => $sms->etat_envoi === 'ATTENTE',
+                ])>{{ $sms->etat_envoi }}</span>
+                <span class="text-right italic text-xs text-gray-500">{{ $sms->created_at->isoFormat('ddd D MMM YY') }} à  {{ $sms->created_at->isoFormat('HH:mm') }}</span>
+            </div>
+        </div>
+    </x-header>
 
     <x-card.card>
         <x-card.header>Message</x-card.header>
