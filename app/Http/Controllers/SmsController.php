@@ -32,7 +32,7 @@ class SmsController extends Controller
 
             SendSms::dispatch($sms);
 
-            return redirect()->route('sms.show');
+            return redirect()->route('sms.show', $sms);
         }
 
         return view('pages.sms.send', [
