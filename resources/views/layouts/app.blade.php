@@ -32,11 +32,38 @@
             </form>
         </div>
         <ul class="px-2 py-2 space-y-1">
-            <li><a href="{{ route('sms.send') }}" class="block hover:bg-gray-600 py-2 px-4 rounded"><i class="fas fa-sms mr-4"></i> SMS</a></li>
+            <li><a href="{{ route('sms.send') }}" @class([
+                'block py-2 px-4 rounded',
+                'bg-indigo-600' => request()->routeIs('sms.*'),
+                'hover:bg-gray-600' => !request()->routeIs('sms.*'),
+                ])><i class="fas fa-sms mr-4"></i> SMS</a></li>
             @can('admin')
-            <li><a href="{{ route('agent.index') }}" class="block hover:bg-gray-600 py-2 px-4 rounded"><i class="fas fa-user mr-4"></i> Agent</a></li>
-            <li><a href="{{ route('groupe.index') }}" class="block hover:bg-gray-600 py-2 px-4 rounded"><i class="fas fa-users mr-4"></i> Groupe</a></li>
-            <li><a href="{{ route('utilisateur.index') }}" class="block hover:bg-gray-600 py-2 px-4 rounded"><i class="fas fa-user-cog mr-4"></i> Utilisateur</a></li>
+                <li x-data="{ open: {{ request()->routeIs('admin.*') ? '1' : '0' }} }">
+                    <div @click="open = !open"  @class([
+                    'block py-2 px-4 rounded flex items-center cursor-pointer',
+                    'bg-indigo-600' => request()->routeIs('admin.*'),
+                    'hover:bg-gray-600' => !request()->routeIs('admin.*'),
+                    ]) :class="open ? 'bg-gray-600' : 'hover:bg-gray-600'">
+                        <i class="fas fa-cogs mr-4"></i> Administration <i class="fas ml-auto" :class="open ? 'fa-angle-down' : 'fa-angle-left'"></i>
+                    </div>
+                    <ul class="px-2 py-2 space-y-1 ml-2" x-show="open">
+                        <li><a href="{{ route('admin.agent.index') }}" @class([
+                            'block py-2 px-4 rounded',
+                            'bg-gray-600' => request()->routeIs('admin.agent.index'),
+                            'hover:bg-gray-600' => !request()->routeIs('admin.agent.index')
+                            ])><i class="far fa-circle mr-4"></i> Agent</a></li>
+                        <li><a href="{{ route('admin.groupe.index') }}" @class([
+                            'block py-2 px-4 rounded',
+                            'bg-gray-600' => request()->routeIs('admin.groupe.index'),
+                            'hover:bg-gray-600' => !request()->routeIs('admin.groupe.index')
+                            ])><i class="far fa-circle mr-4"></i> Groupe</a></li>
+                        <li><a href="{{ route('admin.utilisateur.index') }}" @class([
+                            'block py-2 px-4 rounded',
+                            'bg-gray-600' => request()->routeIs('admin.utilisateur.index'),
+                            'hover:bg-gray-600' => !request()->routeIs('admin.utilisateur.index')
+                            ])><i class="far fa-circle mr-4"></i> Utilisateur</a></li>
+                    </ul>
+                </li>
             @endcan
         </ul>
     </nav>
