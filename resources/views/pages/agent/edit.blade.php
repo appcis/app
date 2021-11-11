@@ -48,11 +48,33 @@
             </div>
 
             <div class="px-4 py-2 flex justify-end items-center space-x-2">
+                <button type="button" @click="open = true" x-show="! open"
+                        class="shadow border border-red-600 bg-red-600 px-6 py-2 block rounded-md hover:bg-red-700 text-gray-50 mr-auto">
+                    Supprimer
+                </button>
                 <x-form.cancel-btn :href="route('agent.index')"></x-form.cancel-btn>
                 <x-form.submit-btn></x-form.submit-btn>
             </div>
 
         </form>
+
+        <div class="bg-red-50 p-4 border border-red-900 rounded-md m-4" x-show="open">
+            <div class="text-red-900 text-center mb-4" @click="open = false">
+                Confirmer la supression d'un agent
+            </div>
+            <form action="{{ route('agent.destroy', $agent) }}" method="POST">
+                @csrf
+                @method('DELETE')
+                <div class="flex items-center justify-center space-x-2">
+                    <button type="button" @click="open = false"
+                            class="shadow border border-green-600 bg-green-600 px-6 py-2 block rounded-md hover:bg-green-700 text-gray-50">
+                        Annuler
+                    </button>
+                    <input type="submit" value="Supprimer"
+                           class="shadow border border-red-600 bg-red-600 px-6 py-2 block rounded-md hover:bg-red-700 text-gray-50 cursor-pointer">
+                </div>
+            </form>
+        </div>
 
     </x-card.card>
 

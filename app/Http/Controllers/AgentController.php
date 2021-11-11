@@ -87,6 +87,8 @@ class AgentController extends Controller
      */
     public function destroy(Agent $agent)
     {
-        //
+        $agent->delete();
+
+        return redirect()->route('agent.index');
     }
 }
