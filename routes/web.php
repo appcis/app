@@ -38,6 +38,7 @@ Route::middleware(['auth'])->group(function () {
         Route::resource('groupe', \App\Http\Controllers\Admin\GroupeController::class);
         Route::resource('utilisateur', \App\Http\Controllers\Admin\UserController::class)
             ->parameters(['utilisateur' => 'user']);
+        Route::resource('sondage', \App\Http\Controllers\Admin\SondageController::class);
     });
 });
 

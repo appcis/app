@@ -67,6 +67,11 @@
                             'bg-gray-600' => request()->routeIs('admin.utilisateur.index'),
                             'hover:bg-gray-600' => !request()->routeIs('admin.utilisateur.index')
                             ])><i class="far fa-circle mr-4"></i> Utilisateur</a></li>
+                        <li><a href="{{ route('admin.sondage.index') }}" @class([
+                            'block py-2 px-4 rounded',
+                            'bg-gray-600' => request()->routeIs('admin.sondage.index'),
+                            'hover:bg-gray-600' => !request()->routeIs('admin.sondage.index')
+                            ])><i class="far fa-circle mr-4"></i> Sondage</a></li>
                     </ul>
                 </li>
             @endcan
