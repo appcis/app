@@ -70,7 +70,7 @@ class GroupeController extends Controller
     public function edit(Groupe $groupe)
     {
         $agents = Agent::all()->sortBy('nom');
-        return view('pages.admina.groupe.edit', compact('groupe', 'agents'));
+        return view('pages.admin.groupe.edit', compact('groupe', 'agents'));
     }
 
     /**

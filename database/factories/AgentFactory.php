@@ -22,7 +22,9 @@ class AgentFactory extends Factory
     public function definition()
     {
         return [
-            //
+            'nom' => $this->faker->lastName,
+            'prenom' => $this->faker->firstName,
+            'phone' => $this->faker->phoneNumber
         ];
     }
 }

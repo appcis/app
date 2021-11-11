@@ -16,7 +16,7 @@
                 <th>Téléphone</th>
             </tr>
             @forelse($agents as $agent)
-                <tr class="cursor-pointer hover:bg-gray-100 border-b" data-action="{{ route('agent.edit', $agent) }}">
+                <tr class="cursor-pointer hover:bg-gray-100 border-b" data-action="{{ route('admin.agent.edit', $agent) }}">
                     <td class="py-2 px-4">{{ $agent->nom }}</td>
                     <td class="py-2 px-4">{{ $agent->prenom }}</td>
                     <td class="py-2 px-4">{{ $agent->phone }}</td>
