@@ -37,6 +37,11 @@
                 'bg-indigo-600' => request()->routeIs('sms.*'),
                 'hover:bg-gray-600' => !request()->routeIs('sms.*'),
                 ])><i class="fas fa-sms mr-4"></i> SMS</a></li>
+            <li><a href="{{ route('repertoire') }}" @class([
+                'block py-2 px-4 rounded',
+                'bg-indigo-600' => request()->routeIs('repertoire'),
+                'hover:bg-gray-600' => !request()->routeIs('repertoire'),
+                ])><i class="fas fa-users mr-4"></i> Repertoire</a></li>
             @can('admin')
                 <li x-data="{ open: {{ request()->routeIs('admin.*') ? '1' : '0' }} }">
                     <div @click="open = !open"  @class([

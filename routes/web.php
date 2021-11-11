@@ -25,6 +25,8 @@ Route::middleware(['auth'])->group(function () {
         ->name('sms.show')
         ->middleware('can:show-sms,sms');
 
+    Route::get('/repertoire', \App\Http\Controllers\RepertoireController::class)->name('repertoire');
+
     Route::middleware('can:admin')->group(function () {
         Route::prefix('parametre')->name('parametre.')->group(function () {
             Route::resource('grade', \App\Http\Controllers\Parametre\GradeController::class);
