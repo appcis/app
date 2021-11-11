@@ -5,7 +5,7 @@
         <x-card.header>
             Liste des agents
             <x-slot name="action">
-                <x-card.create-btn :href="route('agent.create')">Nouvel agent</x-card.create-btn>
+                <x-card.create-btn :href="route('admin.agent.create')">Nouvel agent</x-card.create-btn>
             </x-slot>
         </x-card.header>
 

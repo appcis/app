@@ -1,7 +1,8 @@
 <?php
 
-namespace App\Http\Controllers;
+namespace App\Http\Controllers\Admin;
 
+use App\Http\Controllers\Controller;
 use App\Models\User;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Hash;
@@ -17,7 +18,7 @@ class UserController extends Controller
      */
     public function index()
     {
-        return view('pages.utilisateur.index', [
+        return view('pages.admin.utilisateur.index', [
             'users' => User::all()->sortBy('name')
         ]);
     }
@@ -29,7 +30,7 @@ class UserController extends Controller
      */
     public function create()
     {
-        return view('pages.utilisateur.create');
+        return view('pages.admin.utilisateur.create');
     }
 
     /**
@@ -49,7 +50,7 @@ class UserController extends Controller
 
         User::create($data);
 
-        return redirect()->route('utilisateur.index');
+        return redirect()->route('admin.utilisateur.index');
     }
 
     /**
@@ -71,7 +72,7 @@ class UserController extends Controller
      */
     public function edit(User $user)
     {
-        return view('pages.utilisateur.edit', compact('user'));
+        return view('pages.admin.utilisateur.edit', compact('user'));
     }
 
     /**
@@ -93,7 +94,7 @@ class UserController extends Controller
 
         $user->update($data);
 
-        return redirect()->route('utilisateur.index');
+        return redirect()->route('admin.utilisateur.index');
 
     }
 
@@ -107,6 +108,6 @@ class UserController extends Controller
     {
         $user->delete();
 
-        return redirect()->route('utilisateur.index');
+        return redirect()->route('admin.utilisateur.index');
     }
 }

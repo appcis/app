@@ -6,7 +6,7 @@
             Nouveau groupe
         </x-card.header>
 
-        <form action="{{ route('groupe.store') }}" method="POST">
+        <form action="{{ route('admin.groupe.store') }}" method="POST">
             @csrf
 
             <div class="px-4 py-2">
@@ -23,7 +23,7 @@
             </div>
 
             <div class="px-4 py-2 flex justify-end items-center space-x-2">
-                <x-form.cancel-btn :href="route('groupe.index')"></x-form.cancel-btn>
+                <x-form.cancel-btn :href="route('admin.groupe.index')"></x-form.cancel-btn>
                 <x-form.submit-btn></x-form.submit-btn>
             </div>
 

@@ -29,15 +29,12 @@ Route::middleware(['auth'])->group(function () {
         Route::prefix('parametre')->name('parametre.')->group(function () {
             Route::resource('grade', \App\Http\Controllers\Parametre\GradeController::class);
         });
-        Route::prefix('theme')->name('theme.')->middleware(['auth'])->group(function () {
-            Route::view('dashboard', 'pages.theme.dashboard')->name('dashboard');
-        });
     });
 
     Route::middleware('can:admin')->prefix('admin')->name('admin.')->group(function () {
-        Route::resource('agent', \App\Http\Controllers\AgentController::class);
-        Route::resource('groupe', \App\Http\Controllers\GroupeController::class);
-        Route::resource('utilisateur', \App\Http\Controllers\UserController::class)
+        Route::resource('agent', \App\Http\Controllers\Admin\AgentController::class);
+        Route::resource('groupe', \App\Http\Controllers\Admin\GroupeController::class);
+        Route::resource('utilisateur', \App\Http\Controllers\Admin\UserController::class)
             ->parameters(['utilisateur' => 'user']);
     });
 });

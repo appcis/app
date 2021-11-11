@@ -5,7 +5,7 @@
         <x-card.header>
             Edition utilisateur
         </x-card.header>
-        <form action="{{ route('utilisateur.update', $user) }}" method="POST">
+        <form action="{{ route('admin.utilisateur.update', $user) }}" method="POST">
             @csrf
             @method('PUT')
 
@@ -34,7 +34,7 @@
                     class="shadow border border-red-600 bg-red-600 px-6 py-2 block rounded-md hover:bg-red-700 text-gray-50 mr-auto">
                     Supprimer
                 </button>
-                <x-form.cancel-btn :href="route('utilisateur.index')"></x-form.cancel-btn>
+                <x-form.cancel-btn :href="route('admin.utilisateur.index')"></x-form.cancel-btn>
                 <x-form.submit-btn></x-form.submit-btn>
             </div>
 
@@ -44,7 +44,7 @@
             <div class="text-red-900 text-center mb-4" @click="open = false">
                 Confirmer la supression d'un utilisateur
             </div>
-            <form action="{{ route('utilisateur.destroy', $user) }}" method="POST">
+            <form action="{{ route('admin.utilisateur.destroy', $user) }}" method="POST">
                 @csrf
                 @method('DELETE')
                 <div class="flex items-center justify-center space-x-2">

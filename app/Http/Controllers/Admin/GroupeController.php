@@ -1,7 +1,8 @@
 <?php
 
-namespace App\Http\Controllers;
+namespace App\Http\Controllers\Admin;
 
+use App\Http\Controllers\Controller;
 use App\Models\Agent;
 use App\Models\Groupe;
 use Illuminate\Http\Request;
@@ -16,7 +17,7 @@ class GroupeController extends Controller
      */
     public function index()
     {
-        return view('pages.groupe.index', [
+        return view('pages.admin.groupe.index', [
             'groupes' => Groupe::all()->sortBy('nom')
         ]);
     }
@@ -28,7 +29,7 @@ class GroupeController extends Controller
      */
     public function create()
     {
-        return view('pages.groupe.create');
+        return view('pages.admin.groupe.create');
     }
 
     /**
@@ -46,7 +47,7 @@ class GroupeController extends Controller
 
         Groupe::create($data);
 
-        return redirect()->route('groupe.index');
+        return redirect()->route('admin.groupe.index');
     }
 
     /**
@@ -69,7 +70,7 @@ class GroupeController extends Controller
     public function edit(Groupe $groupe)
     {
         $agents = Agent::all()->sortBy('nom');
-        return view('pages.groupe.edit', compact('groupe', 'agents'));
+        return view('pages.admina.groupe.edit', compact('groupe', 'agents'));
     }
 
     /**
@@ -92,7 +93,7 @@ class GroupeController extends Controller
         $groupe->update($data);
         $groupe->agents()->sync($request->agents);
 
-        return redirect()->route('groupe.index');
+        return redirect()->route('admin.groupe.index');
     }
 
     /**

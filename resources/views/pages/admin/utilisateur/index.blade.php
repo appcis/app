@@ -5,7 +5,7 @@
         <x-card.header>
             Liste des utilisateurs
             <x-slot name="action">
-                <x-card.create-btn :href="route('utilisateur.create')">Nouvel utilisateur</x-card.create-btn>
+                <x-card.create-btn :href="route('admin.utilisateur.create')">Nouvel utilisateur</x-card.create-btn>
             </x-slot>
         </x-card.header>
 
@@ -15,7 +15,7 @@
                 <th>Email</th>
             </tr>
             @forelse($users as $user)
-                <tr class="cursor-pointer hover:bg-gray-100 border-b" data-action="{{ route('utilisateur.edit', $user) }}">
+                <tr class="cursor-pointer hover:bg-gray-100 border-b" data-action="{{ route('admin.utilisateur.edit', $user) }}">
                     <td class="py-2 px-4">{{ $user->name }}</td>
                     <td class="py-2 px-4">{{ $user->email }}</td>
                 </tr>

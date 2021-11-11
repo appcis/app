@@ -1,7 +1,8 @@
 <?php
 
-namespace App\Http\Controllers;
+namespace App\Http\Controllers\Admin;
 
+use App\Http\Controllers\Controller;
 use App\Models\Agent;
 use App\Models\Groupe;
 use Illuminate\Http\Request;
@@ -16,7 +17,7 @@ class AgentController extends Controller
     public function index()
     {
         $agents = Agent::all()->sortBy('nom');
-        return view('pages.agent.index', compact('agents'));
+        return view('pages.admin.agent.index', compact('agents'));
     }
 
     /**
@@ -26,7 +27,7 @@ class AgentController extends Controller
      */
     public function create()
     {
-        return view('pages.agent.create');
+        return view('pages.admin.agent.create');
     }
 
     /**
@@ -39,7 +40,7 @@ class AgentController extends Controller
     {
         Agent::create($request->all());
 
-        return redirect()->route('agent.index')->with('success', 'L\'agent a été créé');;
+        return redirect()->route('admin.agent.index')->with('success', 'L\'agent a été créé');;
     }
 
     /**
@@ -62,7 +63,7 @@ class AgentController extends Controller
     public function edit(Agent $agent)
     {
         $groupes = Groupe::all()->sortBy('name');
-        return view('pages.agent.edit', compact('agent', 'groupes'));
+        return view('pages.admin.agent.edit', compact('agent', 'groupes'));
     }
 
     /**
@@ -76,7 +77,7 @@ class AgentController extends Controller
     {
         $agent->update($request->all());
         $agent->groupes()->sync($request->groupes);
-        return redirect()->route('agent.index')->with('success', 'L\'agent a été mis a jour');
+        return redirect()->route('admin.agent.index')->with('success', 'L\'agent a été mis a jour');
     }
 
     /**
@@ -89,6 +90,6 @@ class AgentController extends Controller
     {
         $agent->delete();
 
-        return redirect()->route('agent.index');
+        return redirect()->route('admin.agent.index');
     }
 }

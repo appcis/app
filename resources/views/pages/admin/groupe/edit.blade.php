@@ -6,7 +6,7 @@
             Edition groupe
         </x-card.header>
 
-        <form action="{{ route('groupe.update', $groupe) }}" method="POST">
+        <form action="{{ route('admin.groupe.update', $groupe) }}" method="POST">
             @csrf
             @method('PUT')
 
@@ -41,7 +41,7 @@
             </div>
 
             <div class="px-4 py-2 flex justify-end items-center space-x-2">
-                <x-form.cancel-btn :href="route('groupe.index')"></x-form.cancel-btn>
+                <x-form.cancel-btn :href="route('admin.groupe.index')"></x-form.cancel-btn>
                 <x-form.submit-btn></x-form.submit-btn>
             </div>
 

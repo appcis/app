@@ -6,7 +6,7 @@
             Nouvel agent
         </x-card.header>
 
-        <form action="{{ route('agent.store') }}" method="POST">
+        <form action="{{ route('admin.agent.store') }}" method="POST">
             @csrf
 
             <div class="px-4 py-2">
@@ -28,7 +28,7 @@
             </div>
 
             <div class="px-4 py-2 flex justify-end items-center space-x-2">
-                <x-form.cancel-btn :href="route('agent.index')"></x-form.cancel-btn>
+                <x-form.cancel-btn :href="route('admin.agent.index')"></x-form.cancel-btn>
                 <x-form.submit-btn></x-form.submit-btn>
             </div>
 

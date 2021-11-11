@@ -5,7 +5,7 @@
         <x-card.header>
             Liste des groupes
             <x-slot name="action">
-                <x-card.create-btn :href="route('groupe.create')">Nouveau groupe</x-card.create-btn>
+                <x-card.create-btn :href="route('admin.groupe.create')">Nouveau groupe</x-card.create-btn>
             </x-slot>
         </x-card.header>
 
@@ -15,7 +15,7 @@
                 <th>Description</th>
             </tr>
             @forelse($groupes as $groupe)
-                <tr class="cursor-pointer hover:bg-gray-100 border-b" data-action="{{ route('groupe.edit', $groupe) }}">
+                <tr class="cursor-pointer hover:bg-gray-100 border-b" data-action="{{ route('admin.groupe.edit', $groupe) }}">
                     <td class="py-2 px-4">{{ $groupe->name }}</td>
                     <td class="py-2 px-4">{{ $groupe->description }}</td>
                 </tr>
