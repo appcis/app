@@ -42,6 +42,11 @@
                 'bg-indigo-600' => request()->routeIs('repertoire'),
                 'hover:bg-gray-600' => !request()->routeIs('repertoire'),
                 ])><i class="fas fa-users mr-4"></i> Repertoire</a></li>
+            <li><a href="{{ route('sondage.index') }}" @class([
+                'block py-2 px-4 rounded',
+                'bg-indigo-600' => request()->routeIs('sondage.index'),
+                'hover:bg-gray-600' => !request()->routeIs('sondage.index'),
+                ])><i class="fas fa-question mr-4"></i> Sondage</a></li>
             @can('admin')
                 <li x-data="{ open: {{ request()->routeIs('admin.*') ? '1' : '0' }} }">
                     <div @click="open = !open"  @class([

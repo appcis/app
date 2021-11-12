@@ -11,13 +11,22 @@ use Illuminate\Support\Collection;
  * @property-read int $id
  * @property string $libelle
  * @property string $description
+ * @property array $dates Date auxquelles se rapporte le sondage
+ * @property array $reponses Reponses possible au sondage
  * @property Collection $agents
  */
 class Sondage extends Model
 {
     use HasFactory;
 
-    protected $fillable = ['libelle', 'description'];
+    protected $fillable = ['libelle', 'description', 'dates', 'reponses'];
+
+    protected $casts = [
+        'libelle' => 'string',
+        'description' => 'string',
+        'dates' => 'array',
+        'reponses' => 'array'
+    ];
 
     public function agents(): BelongsToMany
     {

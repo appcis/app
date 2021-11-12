@@ -27,6 +27,8 @@ Route::middleware(['auth'])->group(function () {
 
     Route::get('/repertoire', \App\Http\Controllers\RepertoireController::class)->name('repertoire');
 
+    Route::get('/sondage', [\App\Http\Controllers\SondageController::class, 'index'])->name('sondage.index');
+
     Route::middleware('can:admin')->group(function () {
         Route::prefix('parametre')->name('parametre.')->group(function () {
             Route::resource('grade', \App\Http\Controllers\Parametre\GradeController::class);

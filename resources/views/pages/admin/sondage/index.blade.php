@@ -3,7 +3,7 @@
 
     <x-card.card>
         <x-card.header>
-            Liste des sondgaes
+            Liste des sondages
             <x-slot name="action">
                 <x-card.create-btn :href="route('admin.sondage.create')">Nouveau sondage</x-card.create-btn>
             </x-slot>

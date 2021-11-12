@@ -18,6 +18,8 @@ class CreateSondagesTable extends Migration
 
             $table->string('libelle');
             $table->text('description')->nullable();
+            $table->json('dates')->nullable();
+            $table->json('reponses');
 
             $table->timestamps();
         });
